@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+struct Street {
+    char name[50];
+    int number;
+};
+
+struct Address {
+    char city[50];
+    struct Street street;
+};
+
+struct Person {
+    char name[50];
+    struct Address address;
+};
+
+int main() {
+    // Array of people objects
+    struct Person people[] = {
+        {"Alice", {"New York", {"Broadway", 123}}},
+        {"Bob", {"Los Angeles", {"Sunset Boulevard", 456}}}
+    };
+
+    // Number of people
+    int num_people = sizeof(people) / sizeof(people[0]);
+
+    // Print the formatted strings
+    for (int i = 0; i < num_people; i++) {
+        printf("%s lives in %s on %s\n", people[i].name, people[i].address.city, people[i].address.street.name);
+    }
+
+    return 0;
+}
